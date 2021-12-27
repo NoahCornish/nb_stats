@@ -10,7 +10,7 @@ library(googlesheets4)
 df <- read.csv("https://raw.githubusercontent.com/turkjr19/nb_shots/main/ohl_2021_2022_regSeasonGameIDs.csv")
 
 # pull ohl roster names from github
-rosters <- read.csv("https://raw.githubusercontent.com/turkjr19/nb_shots/main/rosters11-30-21.csv")
+rosters <- read.csv("https://raw.githubusercontent.com/turkjr19/OHL_scrape/main/data/rosters_Dec24.csv")
 
 # get google sheet and establish where to append too later in code
 ss <- gs4_get('https://docs.google.com/spreadsheets/d/1aueTPPjV3axvQU9Eu7T-LLbzW2CASZKy5iI7vuNrJK8/edit?usp=sharing')
@@ -19,7 +19,7 @@ ss <- gs4_get('https://docs.google.com/spreadsheets/d/1aueTPPjV3axvQU9Eu7T-LLbzW
 df2 <- read_sheet("https://docs.google.com/spreadsheets/d/1aueTPPjV3axvQU9Eu7T-LLbzW2CASZKy5iI7vuNrJK8/edit?usp=sharing")
 
 # adjust date to use a filter for scraping
-scrape_dates <- today()-1
+scrape_dates <- today()
 
 # create dataframe that we will use to iterate through to pull json data from events
 gameIDs <- df %>% 
@@ -150,3 +150,4 @@ viz_df <- z %>%
 
 # append to google sheet
 sheet_append(ss, data = viz_df)
+
